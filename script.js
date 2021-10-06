@@ -19,12 +19,9 @@ window.onload=function(){
             this.parentElement.classList.contains("clear") ? 
                 this.parentElement.classList.remove("clear") :
                 this.parentElement.classList.add("clear");
-                //
-                cleard_list = document.querySelectorAll(".clear");
 
-                cleard_list.forEach((li)=>{
-                    li.childNodes[0].style.borderColor = "#aaa";
-                })
+                cleard_list = document.querySelectorAll(".clear");
+                isSun ? brightCheck() : darkCheck();
         })
     })
 
@@ -55,12 +52,7 @@ window.onload=function(){
         add_btn.style.color = "#fff";
         list.style.boxShadow = "0 5px 3px #eee";
 
-        check_btns.forEach((btn)=>{
-            btn.style.border = "2px solid #333";
-        });
-        cleard_list.forEach((li)=>{
-            li.childNodes[0].style.borderColor = "#aaa";
-        })
+        brightCheck();
     }
     //야간 모드
     function darkMode(){
@@ -75,6 +67,19 @@ window.onload=function(){
         add_btn.style.color = "#000";
         list.style.boxShadow = "0 5px 3px #333";
 
+        darkCheck();
+    }
+
+    //체크 버튼 주/야간 모드
+    function brightCheck(){
+        check_btns.forEach((btn)=>{
+            btn.style.border = "2px solid #333";
+        });
+        cleard_list.forEach((li)=>{
+            li.childNodes[0].style.borderColor = "#aaa";
+        })
+    }
+    function darkCheck(){
         check_btns.forEach((btn)=>{
             btn.style.border = "2px solid #fff";
         })
@@ -82,6 +87,4 @@ window.onload=function(){
             li.childNodes[0].style.borderColor = "#aaa";
         })
     }
-
-    
 }
