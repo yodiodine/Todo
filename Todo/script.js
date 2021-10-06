@@ -1,7 +1,7 @@
 window.onload=function(){
 
+    //요소 접근
     let check_btns = document.querySelectorAll(".check");
-
     const bar_btns = document.querySelectorAll(".bar-btn");
     const circle = document.querySelector(".circle");
     const body = document.querySelector("body");
@@ -10,7 +10,8 @@ window.onload=function(){
     const add_btn = document.querySelector("button");
     const list = document.querySelector(".lists");
     let cleard_list = document.querySelectorAll(".clear");
-
+    //현재 모드
+    let isSun = true;
 
     //할 일 체크 여부
     check_btns.forEach((btn)=>{
@@ -18,8 +19,9 @@ window.onload=function(){
             this.parentElement.classList.contains("clear") ? 
                 this.parentElement.classList.remove("clear") :
                 this.parentElement.classList.add("clear");
+                //
                 cleard_list = document.querySelectorAll(".clear");
-                check_btns = document.querySelectorAll(".check");
+
                 cleard_list.forEach((li)=>{
                     li.childNodes[0].style.borderColor = "#aaa";
                 })
@@ -30,7 +32,13 @@ window.onload=function(){
     bar_btns.forEach((btn)=>{
         btn.addEventListener("click",function(){
             //클릭한 버튼의 아이콘 확인
-            this.classList.contains("moon") ? darkMode() : brightMode();
+            if(isSun){
+                darkMode();
+                isSun = false;
+            }else{
+                brightMode();
+                isSun= true;
+            }
         })
     })
 
@@ -40,13 +48,13 @@ window.onload=function(){
         document.documentElement.style.setProperty('--zero-eee',"#000");
         
         circle.style.transform = "translate(0px)";
-
         body.style.background = "#f5f5f5";
         bar.style.backgroundColor = "#333";
         bar.style.boxShadow = "0 0 10px #ccc";
         text.style.color = "#333";
         add_btn.style.color = "#fff";
         list.style.boxShadow = "0 5px 3px #eee";
+
         check_btns.forEach((btn)=>{
             btn.style.border = "2px solid #333";
         });
@@ -60,13 +68,13 @@ window.onload=function(){
         document.documentElement.style.setProperty('--zero-eee',"#eee");
 
         circle.style.transform = "translate(43px)";
-
         body.style.background = "#555";
         bar.style.backgroundColor = "#ccc";
         bar.style.boxShadow = "0 0 10px #333";
         text.style.color = "#eee";
         add_btn.style.color = "#000";
         list.style.boxShadow = "0 5px 3px #333";
+
         check_btns.forEach((btn)=>{
             btn.style.border = "2px solid #fff";
         })
