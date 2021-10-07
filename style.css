@@ -95,13 +95,12 @@ body{
     background-color: var(--zero-eee);
     color: #fff;font-size: 30px;
     border: none;border-radius: 10px;
-    transition: .3s;
 }
 #list-wrap .add-wrap button:hover{
-    transform: scale(1.07);
+    transform: scale(1.07);transition: .3s;
 }
 #list-wrap .add-wrap button:active{
-    transform: scale(0.95);
+    transform: scale(0.95);transition: .3s;
 }
 
 #list-wrap .lists{
@@ -110,6 +109,9 @@ body{
     border-radius: 10px;
     box-shadow: 0 5px 3px #eee;
     color: var(--zero-eee);
+
+    max-height: 500px;
+    overflow-y: auto;
 }
 #list-wrap .lists li{
     padding: 20px;
