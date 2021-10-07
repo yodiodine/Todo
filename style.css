@@ -86,13 +86,24 @@ body{
     text-indent: 10px;
     background-color: var(--fff-333);
 }
+#list-wrap .add-wrap input#text::placeholder{
+    color: #aaa;
+}
 #list-wrap .add-wrap button{
     width: 50px;height: 50px;
     margin: 0 3px;
     background-color: var(--zero-eee);
     color: #fff;font-size: 30px;
     border: none;border-radius: 10px;
+    transition: .3s;
 }
+#list-wrap .add-wrap button:hover{
+    transform: scale(1.07);
+}
+#list-wrap .add-wrap button:active{
+    transform: scale(0.95);
+}
+
 #list-wrap .lists{
     margin-top: 40px;
     background-color: var(--fff-333);
