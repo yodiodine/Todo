@@ -12,7 +12,7 @@ window.onload=function(){
     let list = document.querySelector(".lists");
     let cleard_list = document.querySelectorAll(".clear");
     //현재 모드
-    let isSun = true;
+    let isSun;
     //할 일 목록 배열
     let toDoArray = [];
     //더미텍스트 배열
@@ -83,6 +83,8 @@ window.onload=function(){
                 brightMode();
                 isSun= true;
             }
+            modeSave();
+            console.log(isSun, JSON.parse(sessionStorage.getItem("isSun")))
         })
     })
     //주간모드
@@ -132,13 +134,18 @@ window.onload=function(){
             li.childNodes[0].style.borderColor = "#aaa";
         })
     }
+    //세션에 모드 저장
+    function modeSave(){
+        sessionStorage.setItem("isSun",isSun);
+    }
+
     //===========================================================//
 
 
     //========================처음 화면 배치========================//
     //localStorage조회하여 배열에 넣고 화면에 보이기
     for(let i=0;i<localStorage.length;i++){
-        toDoArray.push({todo : JSON.parse(localStorage.getItem(i)).todo ,clear :  JSON.parse(localStorage.getItem(i)).clear});
+        toDoArray.push({todo : JSON.parse(localStorage.getItem(i)).todo ,clear : JSON.parse(localStorage.getItem(i)).clear});
 
         list.innerHTML+=`<li><span class='check'><i class='fas fa-check'></i></span>${JSON.parse(localStorage.getItem(i)).todo}<span class='delete'><i class='far fa-trash-alt'></i></span></li>`;
 
@@ -147,7 +154,6 @@ window.onload=function(){
         clearOrNotTodo();
         deleteTodo();
     }
-
     //완료한 할 일 체크박스
     //배열마다 클리어가 true인 배열의 인덱스를 찾아 해당 li의 클래스에 clear를 붙인다.
     toDoArray.forEach((val,idx)=>{
@@ -159,11 +165,14 @@ window.onload=function(){
     })
 
     function placeholderRenuwal(){
-        let dummyNum = Math.floor(Math.random() * 19);
+        let dummyNum = Math.floor(Math.random() * 20);
         text.setAttribute("placeholder",dummyText[dummyNum]);
     }
     placeholderRenuwal();
-
+    JSON.parse(sessionStorage.getItem("isSun"))===null ? isSun = true : isSun = JSON.parse(sessionStorage.getItem("isSun"));
+    modeSave();
+    isSun ? brightMode() : darkMode();
+    
     //===========================================================//
 
 
